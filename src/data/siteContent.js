@@ -1,0 +1,414 @@
+// ============================================================
+// ACE VENTURES – Central Site Content Configuration
+// ============================================================
+
+export const brand = {
+  name: 'ACE VENTURES',
+  tagline: 'Premium Taxi Services Across Goa',
+  subTagline: 'Airport Transfers • Local Sightseeing • Outstation Trips • Corporate Travel',
+  highlight: 'Specialized in Innova Crysta & Innova Hycross Services',
+  logo: '/logo.jpeg',
+  phone: '+918446533900',
+  phoneDisplay: '+91 84465 33900',
+  whatsapp: '918446533900',
+  email: 'goataxinow@gmail.com',
+  address: 'Near Dabolim Airport, Vasco da Gama, Goa – 403801',
+  mapUrl: 'https://maps.google.com/?q=Vasco+da+Gama+Goa',
+};
+
+export const marqueeText =
+  '🚕 Fuel charges are hiked • Fuel charges are hiked • Fuel charges are hiked • Fuel charges are hiked • Fuel charges are hiked • ';
+
+export const navLinks = [
+  { label: 'Home', href: '#home' },
+  { label: 'Fleet', href: '#fleet' },
+  { label: 'Airport Fares', href: '#airport-fares' },
+  { label: 'Services', href: '#services' },
+  { label: 'Why Choose Us', href: '#why-us' },
+  { label: 'Contact', href: '#contact' },
+];
+
+export const heroFeatures = [
+  { icon: '🕐', label: '24/7 Service' },
+  { icon: '✅', label: 'Verified Drivers' },
+  { icon: '✈️', label: 'Airport Pickup' },
+  { icon: '💰', label: 'Transparent Pricing' },
+  { icon: '📍', label: 'Service Across Goa' },
+];
+
+export const whyUs = [
+  {
+    icon: '🛡️',
+    title: 'Fully Insured Vehicles',
+    desc: 'Every vehicle in our fleet is comprehensively insured, giving you complete peace of mind throughout your journey.',
+  },
+  {
+    icon: '👨‍✈️',
+    title: 'Professional Drivers',
+    desc: 'Our verified, experienced drivers know Goa inside out. Polite, punctual, and committed to your comfort.',
+  },
+  {
+    icon: '💰',
+    title: 'Transparent Pricing',
+    desc: 'No hidden charges, no last-minute surprises. The price we quote is the price you pay — always.',
+  },
+  {
+    icon: '📞',
+    title: '24/7 Support',
+    desc: "Round-the-clock assistance for bookings, changes, and emergencies. We're always just a call away.",
+  },
+];
+
+export const services = [
+  {
+    icon: '✈️',
+    title: 'Airport Transfers',
+    desc: 'Seamless pickups and drops at MOPA (GOX) and Dabolim (GOI) airports. On-time, every time.',
+    whatsappMsg: 'Hi, I need an Airport Transfer. Please share available options and pricing.',
+    emailSubject: 'Airport Transfer Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to book an airport transfer with ACE VENTURES. Please provide details.',
+  },
+  {
+    icon: '🚕',
+    title: 'Taxi Services',
+    desc: 'Reliable point-to-point taxi services anywhere in Goa. Comfortable rides at competitive rates.',
+    whatsappMsg: 'Hi, I need a taxi service in Goa. Please help me with booking.',
+    emailSubject: 'Taxi Service Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a taxi with ACE VENTURES.',
+  },
+  {
+    icon: '🏖️',
+    title: 'Goa Sightseeing',
+    desc: "Explore North and South Goa's hidden gems with our customized sightseeing tour packages.",
+    whatsappMsg: 'Hi, I am interested in a Goa Sightseeing tour. Please share available packages.',
+    emailSubject: 'Goa Sightseeing Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Goa sightseeing tour with ACE VENTURES.',
+  },
+  {
+    icon: '💼',
+    title: 'Corporate Travel',
+    desc: 'Premium, punctual business travel solutions for corporate guests and executives.',
+    whatsappMsg: 'Hi, I need Corporate Travel services. Please share your corporate packages.',
+    emailSubject: 'Corporate Travel Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to enquire about corporate travel solutions from ACE VENTURES.',
+  },
+  {
+    icon: '🏨',
+    title: 'Hotel Transfers',
+    desc: 'Convenient and timely hotel pickup and drop services across all major locations in Goa.',
+    whatsappMsg: 'Hi, I need a Hotel Transfer service. Please provide details.',
+    emailSubject: 'Hotel Transfer Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a hotel transfer with ACE VENTURES.',
+  },
+  {
+    icon: '🛣️',
+    title: 'Outstation Trips',
+    desc: 'Comfortable intercity travel to Mumbai, Pune, Bangalore, Kolhapur and beyond.',
+    whatsappMsg: 'Hi, I need an Outstation trip booking. Please share available options.',
+    emailSubject: 'Outstation Trip Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to book an outstation trip with ACE VENTURES.',
+  },
+  {
+    icon: '🚉',
+    title: 'Railway Transfers',
+    desc: 'On-time transfers to and from Madgaon (Margao) and Thivim railway stations.',
+    whatsappMsg: 'Hi, I need a Railway Station transfer. Please help me with booking.',
+    emailSubject: 'Railway Transfer Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a railway station transfer with ACE VENTURES.',
+  },
+  {
+    icon: '🗺️',
+    title: 'Custom Tour Packages',
+    desc: 'Personalized itineraries crafted around your interests, schedule, and budget.',
+    whatsappMsg: 'Hi, I am interested in a Custom Tour Package. Please share details.',
+    emailSubject: 'Custom Tour Package Inquiry – ACE VENTURES',
+    emailBody: 'Hello, I would like to enquire about custom tour packages with ACE VENTURES.',
+  },
+];
+
+export const fleet = [
+  {
+    name: 'Toyota Innova Crysta',
+    badge: 'Featured',
+    badgeColor: 'orange',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80',
+    seats: 7,
+    fuel: 'Diesel',
+    ac: true,
+    tags: ['Comfort Ride', 'Airport Specialist'],
+    priceDay: '₹4,600/day',
+    priceKm: '₹36/km after 80 km',
+    priceHr: '₹300/hr after 8 hrs',
+    whatsappMsg: 'Hi, I want to book a Toyota Innova Crysta. Please share availability and booking details.',
+    emailSubject: 'Innova Crysta Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Toyota Innova Crysta with ACE VENTURES. Please share details.',
+  },
+  {
+    name: 'Toyota Innova Hycross',
+    badge: 'Premium',
+    badgeColor: 'cyan',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1549924231-f129b911e442?w=800&q=80',
+    seats: 7,
+    fuel: 'Hybrid',
+    ac: true,
+    tags: ['Luxury Interior', 'Airport Specialist', 'Long Distance Comfort'],
+    priceDay: 'On Request',
+    priceKm: null,
+    priceHr: null,
+    whatsappMsg: 'Hi, I want to book a Toyota Innova Hycross. Please share availability and pricing.',
+    emailSubject: 'Innova Hycross Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Toyota Innova Hycross with ACE VENTURES. Please share details.',
+  },
+  {
+    name: 'New Wagon R',
+    badge: null,
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80',
+    seats: 4,
+    fuel: 'Petrol',
+    ac: true,
+    tags: ['City Rides', 'Budget Friendly'],
+    priceDay: '₹2,800/day',
+    priceKm: '₹26/km after 80 km',
+    priceHr: '₹200/hr after 8 hrs',
+    whatsappMsg: 'Hi, I want to book a New Wagon R. Please share availability.',
+    emailSubject: 'Wagon R Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a New Wagon R with ACE VENTURES.',
+  },
+  {
+    name: 'Maruti Suzuki Dzire',
+    badge: null,
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80',
+    seats: 4,
+    fuel: 'Petrol',
+    ac: true,
+    tags: ['Sedan Comfort', 'City & Airport'],
+    priceDay: '₹2,900/day',
+    priceKm: '₹26/km after 80 km',
+    priceHr: '₹200/hr after 8 hrs',
+    whatsappMsg: 'Hi, I want to book a Maruti Suzuki Dzire. Please share availability.',
+    emailSubject: 'Dzire Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Maruti Suzuki Dzire with ACE VENTURES.',
+  },
+  {
+    name: 'Maruti Suzuki Ertiga',
+    badge: null,
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80',
+    seats: 6,
+    fuel: 'Petrol',
+    ac: true,
+    tags: ['Family Trips', 'Group Travel'],
+    priceDay: '₹3,600/day',
+    priceKm: '₹29/km after 80 km',
+    priceHr: '₹200/hr after 8 hrs',
+    whatsappMsg: 'Hi, I want to book a Maruti Suzuki Ertiga. Please share availability.',
+    emailSubject: 'Ertiga Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Maruti Suzuki Ertiga with ACE VENTURES.',
+  },
+  {
+    name: 'Toyota Innova',
+    badge: null,
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80',
+    seats: 7,
+    fuel: 'Diesel',
+    ac: true,
+    tags: ['7 Seater', 'Outstation Ready'],
+    priceDay: '₹4,100/day',
+    priceKm: '₹31/km after 80 km',
+    priceHr: '₹200/hr after 8 hrs',
+    whatsappMsg: 'Hi, I want to book a Toyota Innova. Please share availability.',
+    emailSubject: 'Innova Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Toyota Innova with ACE VENTURES.',
+  },
+  {
+    name: 'Mahindra Scorpio N',
+    badge: null,
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80',
+    seats: 7,
+    fuel: 'Diesel',
+    ac: true,
+    tags: ['SUV Experience', 'Adventure Ready'],
+    priceDay: 'On Request',
+    priceKm: null,
+    priceHr: null,
+    whatsappMsg: 'Hi, I want to book a Mahindra Scorpio N. Please share availability and pricing.',
+    emailSubject: 'Scorpio N Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Mahindra Scorpio N with ACE VENTURES.',
+  },
+];
+
+export const airportFares = [
+  {
+    route: 'North Goa → Dabolim Airport',
+    routeShort: 'North Goa → Dabolim',
+    icon: '✈️',
+    rows: [
+      { location: 'Panaji', hatchback: '₹1,200', ertiga: '₹1,600', crysta: '₹2,400' },
+      { location: 'Candolim / Calangute / Baga', hatchback: '₹1,400', ertiga: '₹1,700', crysta: '₹2,500' },
+      { location: 'Anjuna / Vagator', hatchback: '₹1,600', ertiga: '₹1,800', crysta: '₹2,800' },
+      { location: 'Morjim / Arambol / Mandrem', hatchback: '₹2,400', ertiga: '₹2,800', crysta: '₹3,800' },
+      { location: 'Mopa', hatchback: '₹2,200', ertiga: '₹2,600', crysta: '₹3,600' },
+    ],
+  },
+  {
+    route: 'North Goa → Mopa Airport',
+    routeShort: 'North Goa → Mopa',
+    icon: '🛫',
+    rows: [
+      { location: 'Mandrem / Arambol / Morjim / Vagator / Anjuna / Calangute / Baga', hatchback: '₹1,400', ertiga: '₹1,700', crysta: '₹2,600' },
+      { location: 'Porvorim / Panaji', hatchback: '₹1,400', ertiga: '₹1,600', crysta: '₹2,900' },
+      { location: 'Miramar / Taleigao / Dona Paula', hatchback: '₹1,500', ertiga: '₹1,700', crysta: '₹2,900' },
+    ],
+  },
+  {
+    route: 'South Goa → Dabolim Airport',
+    routeShort: 'South Goa → Dabolim',
+    icon: '✈️',
+    rows: [
+      { location: 'Margao', hatchback: '₹1,200', ertiga: '₹1,500', crysta: '₹2,600' },
+      { location: 'Colva / Benaulim / Varca', hatchback: '₹1,400', ertiga: '₹1,700', crysta: '₹2,900' },
+      { location: 'Mobor / Cavelossim', hatchback: '₹1,600', ertiga: '₹1,900', crysta: '₹3,400' },
+      { location: 'Agonda / Palolem / Canacona', hatchback: '₹2,600', ertiga: '₹3,000', crysta: '₹5,600' },
+    ],
+  },
+  {
+    route: 'South Goa → Mopa Airport',
+    routeShort: 'South Goa → Mopa',
+    icon: '🛫',
+    rows: [
+      { location: 'Dabolim / Verna / Madgaon', hatchback: '₹2,200', ertiga: '₹2,500', crysta: '₹4,100' },
+      { location: 'Varca / Benaulim', hatchback: '₹2,400', ertiga: '₹3,100', crysta: '₹4,600' },
+      { location: 'Mobor / Cavelossim', hatchback: '₹2,600', ertiga: '₹3,600', crysta: '₹5,600' },
+      { location: 'Agonda / Palolem / Canacona / Cabo de Rama', hatchback: '₹3,600', ertiga: '₹4,300', crysta: '₹5,300' },
+    ],
+  },
+];
+
+export const bookingSteps = [
+  {
+    step: '01',
+    icon: '🚗',
+    title: 'Choose Service',
+    desc: 'Select your preferred vehicle and service type — airport transfer, sightseeing, or outstation.',
+  },
+  {
+    step: '02',
+    icon: '📋',
+    title: 'Share Trip Details',
+    desc: 'Provide your pickup location, destination, date, and travel time via WhatsApp or our form.',
+  },
+  {
+    step: '03',
+    icon: '✅',
+    title: 'Get Confirmation',
+    desc: 'Receive instant booking confirmation with driver details and vehicle information.',
+  },
+  {
+    step: '04',
+    icon: '🎉',
+    title: 'Enjoy Your Journey',
+    desc: 'Sit back, relax, and experience Goa in premium comfort with ACE VENTURES.',
+  },
+];
+
+export const testimonials = [
+  {
+    name: 'Priya Sharma',
+    location: 'Mumbai',
+    rating: 5,
+    avatar: 'PS',
+    text: 'Booked an Innova Crysta for our airport transfer from Dabolim. The driver was punctual, vehicle was spotless, and the ride was incredibly smooth. ACE VENTURES is our go-to for every Goa trip!',
+    tag: 'Airport Transfer',
+  },
+  {
+    name: 'Rahul Mehta',
+    location: 'Delhi',
+    rating: 5,
+    avatar: 'RM',
+    text: 'The Innova Crysta was absolutely perfect for our family of 6. Spacious, clean, AC worked great. Our driver knew every corner of Goa and made the sightseeing so much more special.',
+    tag: 'Innova Crysta',
+  },
+  {
+    name: 'Sneha Patel',
+    location: 'Ahmedabad',
+    rating: 5,
+    avatar: 'SP',
+    text: 'Late-night MOPA airport pickup was flawless. Driver was waiting with a nameplate, helped with luggage. Transparent billing — exactly what was quoted. Highly recommend!',
+    tag: 'Airport Transfer',
+  },
+  {
+    name: 'Arjun Nair',
+    location: 'Bangalore',
+    rating: 5,
+    avatar: 'AN',
+    text: 'Used ACE VENTURES for a 4-day corporate team trip. Multiple bookings, all perfectly coordinated. Professional drivers, premium vehicles, zero delays. Will use exclusively for future corporate trips.',
+    tag: 'Corporate Travel',
+  },
+  {
+    name: 'Kavya Iyer',
+    location: 'Chennai',
+    rating: 5,
+    avatar: 'KI',
+    text: 'Best taxi service in Goa, hands down. Our driver took us to hidden beaches and local spots most tourists never see. The Dzire was immaculate and the driver was so friendly and knowledgeable.',
+    tag: 'Professional Drivers',
+  },
+  {
+    name: 'Rohan Gupta',
+    location: 'Hyderabad',
+    rating: 5,
+    avatar: 'RG',
+    text: 'Booked for an outstation trip to Kolhapur. 7-seater Innova, perfect for our group. Driver was safe, responsible, and the vehicle was in top condition. Price was exactly as quoted — no hidden charges.',
+    tag: 'Outstation Trip',
+  },
+];
+
+export const faqs = [
+  {
+    q: 'Do you provide airport pickups from MOPA and Dabolim?',
+    a: 'Yes! We provide seamless airport transfers from both Mopa (Manohar International Airport, GOX) and Dabolim (Goa International Airport, GOI). Our drivers track your flight in real time, so delays are never a problem.',
+  },
+  {
+    q: 'Are your drivers verified and licensed?',
+    a: 'Absolutely. All ACE VENTURES drivers undergo a thorough background verification, hold valid commercial driving licenses, and are trained in professional hospitality standards. Your safety is our top priority.',
+  },
+  {
+    q: 'Do you provide Toyota Innova Crysta in Goa?',
+    a: 'Yes! The Toyota Innova Crysta is our flagship vehicle and most popular choice. At ₹4,600/day with ₹36/km after 80 km, it offers the perfect blend of comfort, space, and reliability for families and airport transfers.',
+  },
+  {
+    q: 'Do you provide Toyota Innova Hycross?',
+    a: 'Yes, we offer the premium Toyota Innova Hycross for discerning travellers seeking a luxury hybrid experience. Pricing is on request — contact us via WhatsApp for availability and custom quotes.',
+  },
+  {
+    q: 'Do you offer Goa sightseeing packages?',
+    a: 'Yes! We offer comprehensive North Goa and South Goa sightseeing tours, covering beaches, temples, heritage sites, spice plantations, and waterfalls. Custom itineraries are also available.',
+  },
+  {
+    q: 'Can I book via WhatsApp?',
+    a: "Absolutely! WhatsApp is our fastest booking channel. Just click the 'Book on WhatsApp' button on any service or vehicle and we'll respond with confirmation in minutes.",
+  },
+  {
+    q: 'Do you provide corporate travel services?',
+    a: 'Yes! We offer premium corporate travel solutions including executive transfers, conference pick-ups, bulk fleet bookings, and monthly billing for businesses. Contact us for corporate rate packages.',
+  },
+  {
+    q: 'Are your prices transparent with no hidden charges?',
+    a: 'Yes, 100%. The price we quote is exactly what you pay. All toll charges, parking fees, and taxes are communicated upfront. No midnight surprises, no extra demands — just honest, transparent pricing.',
+  },
+];
+
+export const contactInfo = {
+  phone: brand.phoneDisplay,
+  phoneLink: `tel:${brand.phone}`,
+  whatsapp: brand.whatsapp,
+  email: brand.email,
+  address: brand.address,
+  mapUrl: brand.mapUrl,
+  whatsappGeneral: `Hi, I would like to enquire about taxi services with ACE VENTURES in Goa. Please share details.`,
+};
