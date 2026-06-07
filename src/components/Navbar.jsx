@@ -6,7 +6,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
-  const topOffset = 126;
+  const topOffset = 96;
 
   useEffect(() => {
     const onScroll = () => {
@@ -46,15 +46,38 @@ export default function Navbar() {
     };
   }, []);
 
-  const handleNav = (href) => {
+  const handleNav = (href, event) => {
+    event?.preventDefault();
     setMenuOpen(false);
-    const target = document.querySelector(href);
-    if (!target) return;
-
     const id = href.replace('#', '');
-    const nextTop = id === 'home' ? 0 : target.getBoundingClientRect().top + window.scrollY - topOffset;
     setActiveSection(id);
-    window.scrollTo({ top: Math.max(0, nextTop), behavior: 'smooth' });
+
+    window.setTimeout(() => {
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      const fixedHeader = document.querySelector('[data-fixed-header]');
+      const offset = fixedHeader?.getBoundingClientRect().height ?? topOffset;
+      const nextTop = id === 'home' ? 0 : target.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.history.pushState(null, '', href);
+      window.scrollTo({ top: Math.max(0, nextTop), behavior: 'smooth' });
+    }, 0);
+  };
+
+  const toggleMobileMenu = () => {
+    setMenuOpen(open => !open);
+  };
+
+  const handleMobileTogglePointer = (event) => {
+    event.preventDefault();
+    toggleMobileMenu();
+  };
+
+  const handleMobileToggleKeyDown = (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    toggleMobileMenu();
   };
 
   const whatsappUrl = `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with Goa Taxi Now.')}`;
@@ -67,11 +90,11 @@ export default function Navbar() {
     <header
       className={`w-full transition-all duration-300 ${
         scrolled ? 'bg-white shadow-lg shadow-navy/10 border-b border-navy/8' : 'bg-transparent'
-      }`}
+      } relative z-50`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <a href="#home" onClick={e => { e.preventDefault(); handleNav('#home'); }} className="flex items-center gap-2 flex-shrink-0">
+        <a href="#home" onClick={event => handleNav('#home', event)} className="flex items-center gap-2 flex-shrink-0">
           <img src={brand.logo} alt={brand.name} className="h-12 w-12 md:h-14 md:w-14 object-contain rounded-full ring-2 ring-white/70 shadow-sm" />
           <div className="hidden sm:block">
             <div className={`font-display text-xl font-bold leading-tight tracking-wide transition-colors duration-300 ${logoTextClass}`}>ACE VENTURES</div>
@@ -84,6 +107,7 @@ export default function Navbar() {
           {navLinks.map(({ label, href }) => (
             <li key={href}>
               <button
+                type="button"
                 onClick={() => handleNav(href)}
                 className={`px-3 py-2 rounded-lg text-sm font-body font-medium transition-all duration-200 relative group ${
                   activeSection === href.replace('#', '')
@@ -112,6 +136,7 @@ export default function Navbar() {
             WhatsApp
           </a>
           <button
+            type="button"
             onClick={() => handleNav('#contact')}
             className="px-5 py-2 rounded-full bg-navy text-white text-sm font-body font-bold tracking-normal transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#111936] hover:shadow-lg hover:shadow-navy/15"
           >
@@ -121,9 +146,13 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className={`lg:hidden p-2 transition-colors duration-300 ${mobileToggleClass}`}
-          onClick={() => setMenuOpen(!menuOpen)}
+          type="button"
+          className={`relative z-50 lg:hidden flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-white/90 shadow-sm ring-1 ring-navy/8 transition-colors duration-300 active:scale-95 ${mobileToggleClass}`}
+          onPointerUp={handleMobileTogglePointer}
+          onKeyDown={handleMobileToggleKeyDown}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
         >
           <div className="w-6 flex flex-col gap-1.5">
             <span className={`h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
@@ -137,19 +166,21 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className={`lg:hidden border-t ${
+            className={`fixed left-0 right-0 top-[96px] z-[60] max-h-[calc(100vh-96px)] overflow-y-auto border-t lg:hidden ${
               scrolled ? 'bg-white border-navy/10 shadow-lg' : 'bg-white/95 border-navy/10 shadow-lg'
             }`}
           >
             <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map(({ label, href }) => (
-                <button
+                <a
                   key={href}
-                  onClick={() => handleNav(href)}
+                  href={href}
+                  onClick={event => handleNav(href, event)}
                   className={`text-left px-4 py-3 rounded-lg font-body font-medium transition-all ${
                     activeSection === href.replace('#', '')
                       ? 'text-cyan bg-cyan/10'
@@ -159,23 +190,25 @@ export default function Navbar() {
                   }`}
                 >
                   {label}
-                </button>
+                </a>
               ))}
               <div className="flex gap-3 mt-3 pt-3 border-t border-white/10">
                 <a
                   href={`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with Goa Taxi Now.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
                   className="flex-1 text-center py-3 rounded-full bg-[#25D366] text-white font-body font-semibold text-sm"
                 >
                   WhatsApp
                 </a>
-                <button
-                  onClick={() => handleNav('#contact')}
+                <a
+                  href="#contact"
+                  onClick={event => handleNav('#contact', event)}
                   className="flex-1 py-3 rounded-full bg-navy text-white font-body font-bold text-sm"
                 >
                   Book Taxi
-                </button>
+                </a>
               </div>
             </div>
           </motion.div>

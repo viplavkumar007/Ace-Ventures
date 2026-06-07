@@ -18,7 +18,7 @@ export default function App() {
   return (
     <div className="relative">
       {/* Sticky top stack: marquee + navbar */}
-      <div className="fixed top-0 left-0 right-0 z-50">
+      <div className="fixed top-0 left-0 right-0 z-50" data-fixed-header>
         <MarqueeBanner />
         <Navbar />
       </div>

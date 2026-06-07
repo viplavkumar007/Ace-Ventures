@@ -37,6 +37,16 @@ export default function Hero() {
     document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
+  const handlePremiumCarDetails = (vehicle, index) => {
+    const targetId = index === 1
+      ? 'contact'
+      : vehicle.name === 'Toyota Innova Crysta'
+        ? 'fleet-type-muv'
+        : 'fleet';
+
+    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
   return (
     <section id="home" className="relative overflow-hidden">
       {/* Mobile dealership-style hero */}
@@ -107,11 +117,11 @@ export default function Hero() {
           <div className="mt-10">
             <h2 className="text-center font-display text-2xl font-black text-navy">Premium Cars</h2>
             <div className="mt-5 grid grid-cols-2 gap-3">
-              {mobilePremiumCars.map(vehicle => (
+              {mobilePremiumCars.map((vehicle, index) => (
                 <button
                   key={vehicle.name}
                   type="button"
-                  onClick={() => document.getElementById(vehicle.name === 'Toyota Innova Crysta' ? 'fleet-type-muv' : 'fleet')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+                  onClick={() => handlePremiumCarDetails(vehicle, index)}
                   className="overflow-hidden rounded-xl border border-navy/8 bg-navy text-left shadow-md"
                 >
                   <div className="relative h-24 overflow-hidden">
