@@ -4,18 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: '#082544',
-        cyan: '#27D8E5',
-        orange: '#FF7A1A',
-        yellow: '#FFC61A',
+        navy: '#070D22',
+        cyan: '#315BEA',
+        orange: '#F06A9A',
+        yellow: '#EAF3FF',
       },
       fontFamily: {
-        display: ['"Barlow Condensed"', 'sans-serif'],
+        display: ['"DM Sans"', 'sans-serif'],
         body: ['"DM Sans"', 'sans-serif'],
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #082544 0%, #27D8E5 100%)',
-        'gradient-accent': 'linear-gradient(135deg, #FF7A1A 0%, #FFC61A 100%)',
+        'gradient-primary': 'linear-gradient(135deg, #070D22 0%, #111936 100%)',
+        'gradient-accent': 'linear-gradient(135deg, #315BEA 0%, #5D78F0 100%)',
       },
     },
   },

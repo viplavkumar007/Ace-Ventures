@@ -17,14 +17,14 @@ export const brand = {
 };
 
 export const marqueeText =
-  '🚕 Fuel charges are hiked • Fuel charges are hiked • Fuel charges are hiked • Fuel charges are hiked • Fuel charges are hiked • ';
+  'To continue providing quality and reliable transportation services, our fares have been adjusted in line with the recent fuel price hike. We appreciate your support and understanding. Safe travels with Ace Ventures';
 
 export const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'Fleet', href: '#fleet' },
+  { label: 'Why Choose Us', href: '#why-us' },
   { label: 'Airport Fares', href: '#airport-fares' },
   { label: 'Services', href: '#services' },
-  { label: 'Why Choose Us', href: '#why-us' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -208,6 +208,22 @@ export const fleet = [
     whatsappMsg: 'Hi, I want to book a Maruti Suzuki Ertiga. Please share availability.',
     emailSubject: 'Ertiga Booking – ACE VENTURES',
     emailBody: 'Hello, I would like to book a Maruti Suzuki Ertiga with ACE VENTURES.',
+  },
+  {
+    name: 'Kia Carens Clavis EV',
+    badge: null,
+    featured: false,
+    image: '/fleet/kia-carens-clavis-ev.jpeg',
+    seats: 6,
+    fuel: 'Electric',
+    ac: true,
+    tags: ['EV Comfort', 'Family Trips'],
+    priceDay: '₹3,600/day',
+    priceKm: '₹29/km after 80 km',
+    priceHr: '₹200/hr after 8 hrs',
+    whatsappMsg: 'Hi, I want to book a Kia Carens Clavis EV. Please share availability.',
+    emailSubject: 'Kia Carens Clavis EV Booking – ACE VENTURES',
+    emailBody: 'Hello, I would like to book a Kia Carens Clavis EV with ACE VENTURES.',
   },
   {
     name: 'Toyota Innova',
@@ -410,5 +426,5 @@ export const contactInfo = {
   email: brand.email,
   address: brand.address,
   mapUrl: brand.mapUrl,
-  whatsappGeneral: `Hi, I would like to enquire about taxi services with ACE VENTURES in Goa. Please share details.`,
+  whatsappGeneral: `Hi, I would like to enquire about taxi services with Goa Taxi Now in Goa. Please share details.`,
 };

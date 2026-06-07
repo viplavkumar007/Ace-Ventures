@@ -28,8 +28,8 @@ export default function App() {
         <div style={{ paddingTop: '36px' }}>
           <Hero />
         </div>
-        <WhyUs />
         <Fleet />
+        <WhyUs />
         <AirportFares />
         <Services />
         <BookingProcess />

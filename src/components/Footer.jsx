@@ -7,10 +7,9 @@ export default function Footer() {
   return (
     <footer className="bg-navy relative overflow-hidden">
       {/* Top border gradient */}
-      <div className="h-0.5 bg-gradient-to-r from-cyan via-orange to-yellow" />
+      <div className="h-0.5 bg-cyan" />
 
       {/* Decorative */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-cyan/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -96,14 +95,14 @@ export default function Footer() {
                 </div>
               </a>
               <a href={`mailto:${brand.email}`} className="flex items-start gap-3 group">
-                <span className="text-orange mt-0.5">📧</span>
+                <span className="text-cyan mt-0.5">📧</span>
                 <div>
                   <div className="text-white/40 text-xs font-body mb-0.5">Email</div>
-                  <div className="text-white/75 group-hover:text-orange font-body text-sm transition-colors break-all">{brand.email}</div>
+                  <div className="text-white/75 group-hover:text-cyan font-body text-sm transition-colors break-all">{brand.email}</div>
                 </div>
               </a>
               <div className="flex items-start gap-3">
-                <span className="text-yellow mt-0.5">📍</span>
+                <span className="text-cyan mt-0.5">📍</span>
                 <div>
                   <div className="text-white/40 text-xs font-body mb-0.5">Address</div>
                   <div className="text-white/75 font-body text-sm">{brand.address}</div>

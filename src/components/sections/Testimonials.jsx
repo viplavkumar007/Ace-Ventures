@@ -20,7 +20,7 @@ export default function Testimonials() {
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.015]" style={{
-        backgroundImage: `radial-gradient(circle at 2px 2px, #082544 1px, transparent 0)`,
+        backgroundImage: `radial-gradient(circle at 2px 2px, #070D22 1px, transparent 0)`,
         backgroundSize: '28px 28px'
       }} />
 
@@ -65,7 +65,7 @@ export default function Testimonials() {
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl bg-gradient-to-r from-cyan to-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl bg-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             </ScrollReveal>
           ))}

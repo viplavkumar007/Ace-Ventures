@@ -58,7 +58,6 @@ export default function FAQ() {
 
   return (
     <section className="py-20 md:py-28 bg-[#f7f9fc] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-orange/5 blur-3xl" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>

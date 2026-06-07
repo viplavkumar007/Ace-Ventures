@@ -22,13 +22,13 @@ export default function FloatingWhatsApp() {
       </AnimatePresence>
 
       <motion.a
-        href={`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with ACE VENTURES in Goa.')}`}
+        href={`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with Goa Taxi Now in Goa.')}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        className="w-14 h-14 rounded-full bg-green-500 flex items-center justify-center shadow-xl shadow-green-500/40 hover:bg-green-400 transition-colors"
+        className="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-xl shadow-[#25D366]/35 hover:bg-[#1EBE5D] transition-colors"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         animate={{ y: [0, -6, 0] }}

@@ -11,7 +11,7 @@ function Toast({ message, type, onClose }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -20, scale: 0.9 }}
       className={`fixed top-24 right-4 z-[100] flex items-center gap-3 px-5 py-4 rounded-xl shadow-2xl max-w-sm ${
-        type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+        type === 'success' ? 'bg-cyan text-white' : 'bg-red-500 text-white'
       }`}
       role="alert"
       aria-live="polite"
@@ -54,14 +54,16 @@ export default function Contact() {
     setLoading(true);
     const selectedService = services.find(s => s.title === form.service);
 
-    const waMsg = `Hi, I'd like to enquire about *${form.service}* with ACE VENTURES.\n\n👤 *Name:* ${form.name}\n📞 *Phone:* ${form.phone}\n${form.email ? `📧 *Email:* ${form.email}\n` : ''}📍 *Pickup:* ${form.pickup}\n${form.dropoff ? `🏁 *Drop-off:* ${form.dropoff}\n` : ''}${form.date ? `📅 *Date:* ${form.date}\n` : ''}${form.message ? `\n💬 *Message:* ${form.message}` : ''}`;
+    const waMsg = `Hi, I'd like to enquire about *${form.service}* with Goa Taxi Now.\n\n👤 *Name:* ${form.name}\n📞 *Phone:* ${form.phone}\n${form.email ? `📧 *Email:* ${form.email}\n` : ''}📍 *Pickup:* ${form.pickup}\n${form.dropoff ? `🏁 *Drop-off:* ${form.dropoff}\n` : ''}${form.date ? `📅 *Date:* ${form.date}\n` : ''}${form.message ? `\n💬 *Message:* ${form.message}` : ''}`;
 
     setTimeout(() => {
       setLoading(false);
       window.open(`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(waMsg)}`, '_blank');
 
-      const emailSubject = selectedService ? selectedService.emailSubject : `Booking Enquiry – ACE VENTURES`;
-      const emailBody = `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || 'N/A'}\nService: ${form.service}\nPickup: ${form.pickup}\nDrop-off: ${form.dropoff || 'N/A'}\nDate: ${form.date || 'N/A'}\nMessage: ${form.message || 'N/A'}`;
+      const emailSubject = selectedService
+        ? selectedService.emailSubject.replace('ACE VENTURES', 'Goa Taxi Now')
+        : `Booking Enquiry - Goa Taxi Now`;
+      const emailBody = `Company: Goa Taxi Now\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || 'N/A'}\nService: ${form.service}\nPickup: ${form.pickup}\nDrop-off: ${form.dropoff || 'N/A'}\nDate: ${form.date || 'N/A'}\nMessage: ${form.message || 'N/A'}`;
       window.open(`mailto:${brand.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
 
       setToast({ message: 'Enquiry sent! Redirecting to WhatsApp...', type: 'success' });
@@ -83,8 +85,6 @@ export default function Contact() {
       </AnimatePresence>
 
       <section id="contact" className="py-20 md:py-28 bg-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-cyan/5 blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-orange/5 blur-3xl" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
@@ -113,7 +113,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="flex items-start gap-4 p-5 rounded-2xl border border-navy/8 hover:border-cyan/30 bg-white hover:bg-navy/2 group transition-all duration-200 hover:shadow-md"
                   >
-                    <div className="w-12 h-12 rounded-xl gradient-accent flex items-center justify-center text-xl flex-shrink-0 group-hover:shadow-lg transition-shadow">
+                    <div className="w-12 h-12 rounded-xl bg-[#EEF1FB] border border-cyan/10 flex items-center justify-center text-xl flex-shrink-0 group-hover:shadow-lg transition-shadow">
                       {item.icon}
                     </div>
                     <div>
@@ -126,7 +126,7 @@ export default function Contact() {
                 {/* Availability note */}
                 <div className="p-5 rounded-2xl bg-navy border border-cyan/20">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-cyan animate-pulse" />
                     <span className="font-display text-white font-bold">Available 24/7</span>
                   </div>
                   <p className="text-white/55 text-sm font-body">Our team is available round the clock for bookings, queries, and emergency support.</p>
@@ -226,7 +226,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 rounded-xl gradient-accent text-navy font-display font-black text-lg tracking-wide transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange/30 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                  className="w-full py-4 rounded-xl bg-cyan text-white font-body font-black text-lg tracking-normal transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#254BDD] hover:shadow-xl hover:shadow-cyan/20 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                 >
                   {loading ? (
                     <>
