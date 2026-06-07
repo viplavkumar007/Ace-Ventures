@@ -29,21 +29,24 @@ export default function Navbar() {
   };
 
   const whatsappUrl = `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with ACE VENTURES.')}`;
+  const logoTextClass = scrolled ? 'text-navy' : 'text-white';
+  const logoSubTextClass = scrolled ? 'text-navy/55' : 'text-cyan';
+  const navTextClass = scrolled ? 'text-navy/70 hover:text-navy' : 'text-white/80 hover:text-white';
+  const mobileToggleClass = scrolled ? 'text-navy' : 'text-white';
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-dark shadow-lg shadow-navy/30' : 'bg-transparent'
+      className={`w-full transition-all duration-300 ${
+        scrolled ? 'bg-white shadow-lg shadow-navy/10 border-b border-navy/8' : 'bg-transparent'
       }`}
-      style={{ top: scrolled ? 0 : 0 }}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <a href="#home" onClick={e => { e.preventDefault(); handleNav('#home'); }} className="flex items-center gap-2 flex-shrink-0">
           <img src={brand.logo} alt={brand.name} className="h-12 w-12 md:h-14 md:w-14 object-contain rounded-full ring-2 ring-cyan/40" />
           <div className="hidden sm:block">
-            <div className="font-display text-white text-xl font-bold leading-tight tracking-wide">ACE VENTURES</div>
-            <div className="text-cyan text-xs font-body">Premium Taxi • Goa</div>
+            <div className={`font-display text-xl font-bold leading-tight tracking-wide transition-colors duration-300 ${logoTextClass}`}>ACE VENTURES</div>
+            <div className={`text-xs font-body transition-colors duration-300 ${logoSubTextClass}`}>Premium Taxi • Goa</div>
           </div>
         </a>
 
@@ -56,7 +59,7 @@ export default function Navbar() {
                 className={`px-3 py-2 rounded-lg text-sm font-body font-medium transition-all duration-200 relative group ${
                   activeSection === href.replace('#', '')
                     ? 'text-cyan'
-                    : 'text-white/80 hover:text-white'
+                    : navTextClass
                 }`}
               >
                 {label}
@@ -89,7 +92,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-white p-2"
+          className={`lg:hidden p-2 transition-colors duration-300 ${mobileToggleClass}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -109,7 +112,9 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="lg:hidden glass-dark border-t border-cyan/10"
+            className={`lg:hidden border-t ${
+              scrolled ? 'bg-white border-navy/10 shadow-lg' : 'glass-dark border-cyan/10'
+            }`}
           >
             <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map(({ label, href }) => (
@@ -119,7 +124,9 @@ export default function Navbar() {
                   className={`text-left px-4 py-3 rounded-lg font-body font-medium transition-all ${
                     activeSection === href.replace('#', '')
                       ? 'text-cyan bg-cyan/10'
-                      : 'text-white/80 hover:text-white hover:bg-white/5'
+                      : scrolled
+                        ? 'text-navy/70 hover:text-navy hover:bg-navy/5'
+                        : 'text-white/80 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {label}

@@ -36,7 +36,7 @@ function FleetCard({ vehicle, featured, index }) {
         {/* Image */}
         <div className="relative h-52 overflow-hidden">
           <img
-            src={imgError ? 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80' : vehicle.image}
+            src={imgError ? '/fleet/ertiga.jpg' : vehicle.image}
             alt={vehicle.name}
             onError={() => setImgError(true)}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -133,7 +133,7 @@ function FleetCard({ vehicle, featured, index }) {
       {/* Image */}
       <div className="relative h-40 overflow-hidden">
         <img
-          src={imgError ? 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&q=75' : vehicle.image}
+          src={imgError ? '/fleet/ertiga.jpg' : vehicle.image}
           alt={vehicle.name}
           onError={() => setImgError(true)}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

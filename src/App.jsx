@@ -25,7 +25,7 @@ export default function App() {
 
       {/* Page content — push down by marquee (~32px) + navbar (~80px) */}
       <main>
-        <div style={{ paddingTop: '112px' }}>
+        <div style={{ paddingTop: '36px' }}>
           <Hero />
         </div>
         <WhyUs />
