@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { brand, navLinks } from '../data/siteContent';
+import { bookingWhatsAppMessage, brand, navLinks } from '../data/siteContent';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -80,7 +80,7 @@ export default function Navbar() {
     toggleMobileMenu();
   };
 
-  const whatsappUrl = `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with Goa Taxi Now.')}`;
+  const whatsappUrl = `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(bookingWhatsAppMessage())}`;
   const logoTextClass = 'text-navy';
   const logoSubTextClass = scrolled ? 'text-navy/55' : 'text-navy/60';
   const navTextClass = 'text-navy/70 hover:text-navy';
@@ -194,7 +194,7 @@ export default function Navbar() {
               ))}
               <div className="flex gap-3 mt-3 pt-3 border-t border-white/10">
                 <a
-                  href={`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with Goa Taxi Now.')}`}
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
