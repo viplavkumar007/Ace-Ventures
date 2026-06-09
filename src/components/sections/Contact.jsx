@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { brand, services } from '../../data/siteContent';
+import { bookingWhatsAppMessage, brand, services } from '../../data/siteContent';
 import ScrollReveal from '../ui/ScrollReveal';
 import SectionHeader from '../ui/SectionHeader';
 
@@ -25,10 +25,19 @@ function Toast({ message, type, onClose }) {
 
 export default function Contact() {
   const [form, setForm] = useState({
-    name: '', phone: '', email: '', service: '', pickup: '', dropoff: '', date: '', message: ''
+    name: '',
+    phone: '',
+    email: '',
+    service: '',
+    travelDateTime: '',
+    vehicleType: '',
+    passengers: '',
+    pickup: '',
+    dropoff: '',
+    transitDetails: '',
+    message: '',
   });
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null);
 
   const validate = () => {
@@ -37,6 +46,9 @@ export default function Contact() {
     if (!form.phone.trim() || !/^\+?[0-9]{10,13}$/.test(form.phone.replace(/\s/g, ''))) e.phone = 'Valid phone number required';
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Valid email required';
     if (!form.service) e.service = 'Please select a service';
+    if (!form.travelDateTime) e.travelDateTime = 'Travel date and time is required';
+    if (!form.vehicleType) e.vehicleType = 'Please select a vehicle type';
+    if (!form.passengers) e.passengers = 'Passenger count is required';
     if (!form.pickup.trim()) e.pickup = 'Pickup location is required';
     return e;
   };
@@ -51,30 +63,35 @@ export default function Contact() {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
 
-    setLoading(true);
-    const selectedService = services.find(s => s.title === form.service);
+    const waMsg = `${bookingWhatsAppMessage(form)}
 
-    const waMsg = `Hi, I'd like to enquire about *${form.service}* with Goa Taxi Now.\n\n👤 *Name:* ${form.name}\n📞 *Phone:* ${form.phone}\n${form.email ? `📧 *Email:* ${form.email}\n` : ''}📍 *Pickup:* ${form.pickup}\n${form.dropoff ? `🏁 *Drop-off:* ${form.dropoff}\n` : ''}${form.date ? `📅 *Date:* ${form.date}\n` : ''}${form.message ? `\n💬 *Message:* ${form.message}` : ''}`;
+Name: ${form.name}
+Phone: ${form.phone}
+${form.email ? `Email: ${form.email}\n` : ''}Service: ${form.service}${form.message ? `\nAdditional Message: ${form.message}` : ''}`;
+    const whatsappUrl = `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(waMsg)}`;
 
-    setTimeout(() => {
-      setLoading(false);
-      window.open(`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(waMsg)}`, '_blank');
-
-      const emailSubject = selectedService
-        ? selectedService.emailSubject.replace('ACE VENTURES', 'Goa Taxi Now')
-        : `Booking Enquiry - Goa Taxi Now`;
-      const emailBody = `Company: Goa Taxi Now\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email || 'N/A'}\nService: ${form.service}\nPickup: ${form.pickup}\nDrop-off: ${form.dropoff || 'N/A'}\nDate: ${form.date || 'N/A'}\nMessage: ${form.message || 'N/A'}`;
-      window.open(`mailto:${brand.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
-
-      setToast({ message: 'Enquiry sent! Redirecting to WhatsApp...', type: 'success' });
-      setForm({ name: '', phone: '', email: '', service: '', pickup: '', dropoff: '', date: '', message: '' });
-      setTimeout(() => setToast(null), 4000);
-    }, 800);
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    setToast({ message: 'Enquiry sent! Redirecting to WhatsApp...', type: 'success' });
+    setForm({
+      name: '',
+      phone: '',
+      email: '',
+      service: '',
+      travelDateTime: '',
+      vehicleType: '',
+      passengers: '',
+      pickup: '',
+      dropoff: '',
+      transitDetails: '',
+      message: '',
+    });
+    setTimeout(() => setToast(null), 4000);
   };
 
   const inputBase = 'w-full px-4 py-3 rounded-xl border bg-white font-body text-navy text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-cyan/40 placeholder:text-navy/30';
   const inputNormal = `${inputBase} border-navy/12 hover:border-navy/25 focus:border-cyan/50`;
   const inputError = `${inputBase} border-red-300 focus:ring-red-200 bg-red-50/50`;
+  const vehicleTypes = ['Hatchback', 'Sedan', 'SUV', 'MUV', 'Innova Crysta', 'Innova Hycross', 'Electric'];
 
   return (
     <>
@@ -92,7 +109,7 @@ export default function Contact() {
               eyebrow="Get In Touch"
               title="Book Your"
               highlight="Ride"
-              subtitle="Fill the form and we'll reach out on WhatsApp & email instantly."
+              subtitle="Fill the form and we'll reach out on WhatsApp instantly."
             />
           </ScrollReveal>
 
@@ -205,13 +222,49 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="mb-4">
-                  <label className="block text-navy/60 text-xs font-body font-semibold mb-1.5 uppercase tracking-wide">Travel Date</label>
-                  <input
-                    name="date" type="date" value={form.date} onChange={handleChange}
-                    className={inputNormal}
-                    min={new Date().toISOString().split('T')[0]}
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-navy/60 text-xs font-body font-semibold mb-1.5 uppercase tracking-wide">Travel Date & Time *</label>
+                    <input
+                      name="travelDateTime" type="datetime-local" value={form.travelDateTime} onChange={handleChange}
+                      className={errors.travelDateTime ? inputError : inputNormal}
+                      min={new Date().toISOString().slice(0, 16)}
+                    />
+                    {errors.travelDateTime && <p className="text-red-500 text-xs mt-1 font-body">{errors.travelDateTime}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-navy/60 text-xs font-body font-semibold mb-1.5 uppercase tracking-wide">Vehicle Type Required *</label>
+                    <select
+                      name="vehicleType" value={form.vehicleType} onChange={handleChange}
+                      className={errors.vehicleType ? inputError : inputNormal}
+                    >
+                      <option value="">Select vehicle type</option>
+                      {vehicleTypes.map(type => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
+                    </select>
+                    {errors.vehicleType && <p className="text-red-500 text-xs mt-1 font-body">{errors.vehicleType}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-navy/60 text-xs font-body font-semibold mb-1.5 uppercase tracking-wide">No. of Passengers *</label>
+                    <input
+                      name="passengers" type="number" min="1" value={form.passengers} onChange={handleChange}
+                      placeholder="Passenger count"
+                      className={errors.passengers ? inputError : inputNormal}
+                    />
+                    {errors.passengers && <p className="text-red-500 text-xs mt-1 font-body">{errors.passengers}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-navy/60 text-xs font-body font-semibold mb-1.5 uppercase tracking-wide">Flight / Train Details</label>
+                    <input
+                      name="transitDetails" type="text" value={form.transitDetails} onChange={handleChange}
+                      placeholder="Flight / train number, arrival time"
+                      className={inputNormal}
+                    />
+                  </div>
                 </div>
 
                 <div className="mb-6">
@@ -225,27 +278,14 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="w-full py-4 rounded-xl bg-cyan text-white font-body font-black text-lg tracking-normal transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#254BDD] hover:shadow-xl hover:shadow-cyan/20 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                  className="w-full py-4 rounded-xl bg-cyan text-white font-body font-black text-lg tracking-normal transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#254BDD] hover:shadow-xl hover:shadow-cyan/20 active:translate-y-0 flex items-center justify-center gap-3"
                 >
-                  {loading ? (
-                    <>
-                      <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                      </svg>
-                      Sending Enquiry...
-                    </>
-                  ) : (
-                    <>
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                      Send Enquiry via WhatsApp & Email
-                    </>
-                  )}
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Send Enquiry via WhatsApp
                 </button>
 
                 <p className="text-center text-navy/40 text-xs font-body mt-3">
-                  Your enquiry will be sent via WhatsApp + Email simultaneously.
+                  Your enquiry details will open in WhatsApp for quick booking assistance.
                 </p>
               </form>
             </ScrollReveal>

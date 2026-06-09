@@ -8,12 +8,42 @@ export const brand = {
   subTagline: 'Airport Transfers • Local Sightseeing • Outstation Trips • Corporate Travel',
   highlight: 'Specialized in Innova Crysta & Innova Hycross Services',
   logo: '/logo.jpeg',
-  phone: '+918446533900',
-  phoneDisplay: '+91 84465 33900',
-  whatsapp: '918446533900',
+  phone: '+918669978007',
+  phoneDisplay: '+91 86699 78007',
+  secondaryPhone: '+919270288007',
+  secondaryPhoneDisplay: '+91 92702 88007',
+  whatsapp: '918669978007',
   email: 'goataxinow@gmail.com',
   address: 'Near Dabolim Airport, Vasco da Gama, Goa – 403801',
   mapUrl: 'https://maps.google.com/?q=Vasco+da+Gama+Goa',
+};
+
+export const bookingWhatsAppMessage = ({
+  travelDateTime = '',
+  vehicleType = '',
+  passengers = '',
+  pickup = '',
+  dropoff = '',
+  transitDetails = '',
+} = {}) => {
+  const value = (text) => text?.trim() || '';
+
+  return `🚖 Welcome to GOA TAXI NOW!
+
+Thank you for contacting us for your travel requirements in Goa.
+Kindly share the following details for quick booking assistance:
+
+📅 Travel Date & Time: ${value(travelDateTime)}
+🚘 Vehicle Type Required: ${value(vehicleType)}
+👥 No. of Passengers: ${value(passengers)}
+📍 Pick-up Location: ${value(pickup)}
+📍 Drop Location: ${value(dropoff)}
+✈️ Flight / Train Details (if any): ${value(transitDetails)}
+
+Our team will get back to you shortly with the best available options.
+
+📞 8669978007
+📞 9270288007`;
 };
 
 export const marqueeText =

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { brand } from '../data/siteContent';
+import { bookingWhatsAppMessage, brand } from '../data/siteContent';
 
 export default function FloatingWhatsApp() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -22,7 +22,7 @@ export default function FloatingWhatsApp() {
       </AnimatePresence>
 
       <motion.a
-        href={`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent('Hi, I would like to book a taxi with Goa Taxi Now in Goa.')}`}
+        href={`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(bookingWhatsAppMessage())}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"

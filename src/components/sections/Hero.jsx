@@ -54,9 +54,10 @@ export default function Hero() {
         <div className="relative overflow-hidden bg-[#EEF1FB] px-5 pb-0 pt-20 text-center">
           <motion.h1
             {...fadeUp(0.1)}
-            className="mx-auto max-w-xs font-display text-[2.45rem] font-black leading-[1.08] tracking-normal text-navy"
+            className="mx-auto max-w-xs font-display text-[1.95rem] font-black uppercase leading-[1.12] tracking-normal text-navy"
           >
-            Find Your Dream Car
+            <span className="block whitespace-nowrap">Arrive Relaxed,</span>
+            <span className="block whitespace-nowrap">Travel Confidently</span>
           </motion.h1>
 
           <motion.div
@@ -186,57 +187,60 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Desktop/tablet hero remains text-only */}
+      {/* Desktop/tablet dealership-style hero */}
       <div className="relative hidden min-h-screen overflow-hidden bg-[#EEF1FB] sm:block">
-        <div className="absolute inset-x-0 bottom-0 h-[44%] bg-white" />
-
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-4 py-28 text-center sm:px-6 lg:px-8">
-          <motion.div {...fadeUp(0.1)} className="mt-6 inline-flex items-center gap-2 rounded-full border border-navy/8 bg-white px-4 py-2 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-cyan" />
-            <span className="text-sm font-semibold text-navy/70">ACE VENTURES - Goa's Premium Taxi</span>
-          </motion.div>
-
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 pb-0 pt-28 text-center lg:px-8">
           <motion.h1
-            {...fadeUp(0.2)}
-            className="mt-5 max-w-4xl font-display text-6xl font-black leading-tight tracking-normal text-navy md:text-7xl"
+            {...fadeUp(0.1)}
+            className="mx-auto font-display text-5xl font-black uppercase leading-[1.08] tracking-normal text-navy md:text-6xl lg:text-7xl"
           >
-            Find Your Premium Ride
-            <br />
-            <span className="text-cyan"> Across Goa</span>
+            <span className="block whitespace-nowrap">Arrive Relaxed,</span>
+            <span className="block whitespace-nowrap">Travel Confidently</span>
           </motion.h1>
 
-          <motion.p {...fadeUp(0.35)} className="mt-4 max-w-2xl text-base leading-7 text-navy/60 md:text-lg">
-            {brand.subTagline}
-          </motion.p>
-
-          <motion.div {...fadeUp(0.45)} className="mt-5 inline-flex items-center gap-2 rounded-xl border border-cyan/12 bg-white/85 px-4 py-2 shadow-sm">
-            <span className="text-base text-cyan">★</span>
-            <span className="text-sm font-bold text-navy md:text-base">{brand.highlight}</span>
-          </motion.div>
-
-          <motion.div {...fadeUp(0.55)} className="mt-7 flex flex-wrap justify-center gap-4">
-            <a
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 rounded-full bg-cyan px-7 py-4 text-base font-bold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#254BDD] hover:shadow-xl hover:shadow-cyan/20 active:translate-y-0"
-            >
-              Book on WhatsApp
-            </a>
+          <motion.div
+            {...fadeUp(0.2)}
+            className="mx-auto mt-8 flex h-16 w-full max-w-2xl items-center rounded-full bg-white shadow-lg shadow-navy/5 ring-1 ring-navy/8"
+          >
+            {mobileSearchOptions.map((option, index) => (
+              <button
+                key={option.label}
+                type="button"
+                onClick={() => handleMobileSearch(option)}
+                className={`h-full flex-1 px-7 text-left text-sm font-bold transition-colors ${
+                  index < mobileSearchOptions.length - 1 ? 'border-r border-navy/8' : ''
+                } ${
+                  activeMobileSearch === option.label
+                    ? 'bg-[#EEF1FB] text-cyan'
+                    : 'text-navy/55 hover:text-navy'
+                } ${index === 0 ? 'rounded-l-full' : ''}`}
+              >
+                {option.label}
+              </button>
+            ))}
             <button
               onClick={() => document.getElementById('fleet')?.scrollIntoView({ behavior: 'smooth' })}
-              className="flex items-center gap-2 rounded-full border border-navy/10 bg-white px-7 py-4 text-base font-bold text-navy shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-cyan/35 hover:text-cyan active:translate-y-0"
+              className="mr-2 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-cyan text-white shadow-lg shadow-cyan/25 transition-transform hover:scale-105"
+              aria-label="Search fleet"
             >
-              View Fleet
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.4} d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" />
+              </svg>
             </button>
           </motion.div>
+
+          <motion.img
+            {...fadeUp(0.3)}
+            src="/fleet/mobile-hero-car.png"
+            alt="White Toyota Innova taxi"
+            className="relative z-10 mt-12 h-auto w-full max-w-4xl object-contain"
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.75 }}
-            className="mt-12 flex flex-wrap justify-center gap-3"
+            transition={{ duration: 0.55, delay: 0.55 }}
+            className="mt-8 flex flex-wrap justify-center gap-3 pb-12"
           >
             {heroFeatures.map((feature, index) => (
               <div key={index} className="flex items-center gap-2 rounded-full border border-navy/8 bg-white px-4 py-2 text-sm font-semibold text-navy/70 shadow-sm">
